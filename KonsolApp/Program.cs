@@ -15,7 +15,11 @@ using Microsoft.Extensions.Hosting;
 
 var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
 {
+    // Code First
     services.AddDbContext<DataContext>(x => x.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Code\ecutbildning\SQL\SQL4\SQL4\Infrastructure\Data\CodeSql.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=True"));
+
+    // Database First
+    services.AddDbContext<ApplicationDataContext>(x => x.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Code\\ecutbildning\\SQL\\SQL4\\SQL4\\Infrastructure\\Data\\ProductCatalog.mdf;Integrated Security=True;Connect Timeout=30"));
 
     services.AddScoped<AddressRepository>();
     services.AddScoped<CategoryRepository>();
