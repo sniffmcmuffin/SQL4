@@ -21,12 +21,13 @@ var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
     // Database First
     services.AddDbContext<ApplicationDataContext>(x => x.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Code\\ecutbildning\\SQL\\SQL4\\SQL4\\Infrastructure\\Data\\ProductCatalog.mdf;Integrated Security=True;Connect Timeout=30"));
 
+    // Code First Repos
     services.AddScoped<AddressRepository>();
     services.AddScoped<CategoryRepository>();
     services.AddScoped<RoleRepository>();
     services.AddScoped<ProductRepository>();
     services.AddScoped<CustomerRepository>();
-
+    // Code First Services
     services.AddScoped<AddressService>();
     services.AddScoped<CategoryService>();
     services.AddScoped<RoleService>();
