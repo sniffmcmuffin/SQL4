@@ -5,7 +5,7 @@ namespace Infrastructure.Repositories;
 
 public class DataProductRepo : DataRepo<Product>
 {
-    public DataProductRepo(DataContext context) : base(context)
+    public DataProductRepo(ApplicationDataContext context) : base(context)
     {
     }
 }

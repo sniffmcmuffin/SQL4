@@ -7,11 +7,15 @@ public class ConsoleUI
 {
     private readonly ProductService _productService;
     private readonly CustomerService _customerService;
+    private readonly DataProductService _dataProductService;
+    private readonly DataCustomerService _dataCustomerService;
 
-    public ConsoleUI(ProductService productService, CustomerService customerService)
+    public ConsoleUI(ProductService productService, CustomerService customerService, DataProductService dataProductService, DataCustomerService dataCustomerService)
     {
         _productService = productService;
         _customerService = customerService;
+        _dataProductService = dataProductService;
+        _dataCustomerService = dataCustomerService;
     }
 
     // Products
@@ -189,4 +193,37 @@ public class ConsoleUI
 
         Console.ReadKey();
     }
+
+    // DATABASE FIRST
+
+    // Create Customer
+    public void DbCreateCustomerUi()
+    {
+        Console.Clear();
+        Console.WriteLine("---- CREATE DATABASE FIRST CUSTOMER ----");
+
+        Console.Write("First Name: ");
+        var firstName = Console.ReadLine()!;
+
+        Console.Write("Last Name: ");
+        var lastName = Console.ReadLine()!;
+
+        Console.Write("Email: ");
+        var email = Console.ReadLine()!;
+
+        Console.Write("Phone: ");
+        var phone = Console.ReadLine()!;
+
+        var result = _dataCustomerService.CreateCustomer(firstName, lastName, email, phone);
+
+        Debug.WriteLine(result);
+
+        if (result != null)
+        {
+            Console.Clear();
+            Console.WriteLine("Customer was created.");
+            Console.ReadKey();
+        }
+    }
+
 }

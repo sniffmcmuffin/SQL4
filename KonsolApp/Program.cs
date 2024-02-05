@@ -34,16 +34,37 @@ var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
     services.AddScoped<ProductService>();
     services.AddScoped<CustomerService>();
 
+    // Database First Repos
+    services.AddScoped<DataCategoryRepo>();;
+    services.AddScoped<DataProductPriceRepo>();
+    services.AddScoped<DataManufacturerRepo>();
+    services.AddScoped<DataCustomerRepo>();
+    services.AddScoped<DataProductRepo>();
+    services.AddScoped<DataReviewRepo>();
+
+    // Database First Services
+    services.AddScoped<DataCategoryService>();
+    services.AddScoped<DataProductService>();
+    services.AddScoped<DataReviewService>();
+    services.AddScoped<DataProductPriceService>();
+    services.AddScoped<DataCustomerService>();
+    services.AddScoped<DataManufacturerService>();
+
     services.AddSingleton<ConsoleUI>();
 }).Build();
 
 var consoleUI = builder.Services.GetRequiredService<ConsoleUI>();
-// consoleUI.CreateProductUi();
-// consoleUI.GetProductsUi();
-// consoleUI.UpdateProductUi();
-// consoleUI.DeleteProductUi();
+// consoleUI.CreateProductUi();     V
+// consoleUI.GetProductsUi();       V
+// consoleUI.UpdateProductUi();     V
+// consoleUI.DeleteProductUi();     V
 
-// consoleUI.CreateCustomerUi();
-// consoleUI.GetCustomersUi();
-// consoleUI.UpdateCustomerUi();
-consoleUI.DeleteCustomerUi();
+// consoleUI.CreateCustomerUi();    V
+// consoleUI.GetCustomersUi();      V
+// consoleUI.UpdateCustomerUi();    V
+// consoleUI.DeleteCustomerUi();    V
+
+// consoleUI.DbCreateCustomerUi();  V
+consoleUI.DbGetCustomersUi();
+// consoleUI.DbUpdateCustomerUi();
+// consoleUI.DbDeleteCustomerUi();

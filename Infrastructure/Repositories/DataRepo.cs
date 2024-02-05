@@ -3,9 +3,9 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories;
 
-public class DataRepo<TEntity>(DataContext context) where TEntity : class
+public class DataRepo<TEntity>(ApplicationDataContext context) where TEntity : class
 {
-    private readonly DataContext _context = context;
+    private readonly ApplicationDataContext _context = context;
 
     // Create
     public virtual TEntity Create(TEntity entity)

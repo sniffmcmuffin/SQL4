@@ -5,7 +5,7 @@ namespace Infrastructure.Repositories;
 
 public class DataCategoryRepo : DataRepo<Category>
 {
-    public DataCategoryRepo(DataContext context) : base(context)
+    public DataCategoryRepo(ApplicationDataContext context) : base(context)
     {
     }
 }

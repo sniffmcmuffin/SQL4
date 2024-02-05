@@ -5,7 +5,7 @@ namespace Infrastructure.Repositories;
 
 public class DataCustomerRepo : DataRepo<Customer>
 {
-    public DataCustomerRepo(DataContext context) : base(context)
+    public DataCustomerRepo(ApplicationDataContext context) : base(context)
     {
     }
 }

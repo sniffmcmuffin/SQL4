@@ -5,7 +5,7 @@ namespace Infrastructure.Repositories;
 
 public class DataManufacturerRepo : DataRepo<Manufacturer>
 {
-    public DataManufacturerRepo(DataContext context) : base(context)
+    public DataManufacturerRepo(ApplicationDataContext context) : base(context)
     {
     }
 }

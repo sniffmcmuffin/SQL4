@@ -5,7 +5,7 @@ namespace Infrastructure.Repositories;
 
 public class DataReviewRepo : DataRepo<Review>
 {
-    public DataReviewRepo(DataContext context) : base(context)
+    public DataReviewRepo(ApplicationDataContext context) : base(context)
     {
     }
 }
