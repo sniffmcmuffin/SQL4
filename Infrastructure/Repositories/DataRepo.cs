@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Contexts;
+using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories;
@@ -10,11 +11,20 @@ public class DataRepo<TEntity>(ApplicationDataContext context) where TEntity : c
     // Create
     public virtual TEntity Create(TEntity entity)
     {
-        _context.Set<TEntity>().Add(entity);
-        _context.SaveChanges();
-        return entity;
+        try
+        {
+            _context.Set<TEntity>().Add(entity);
+            _context.SaveChanges();
+            return entity;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("ERROR :: " + ex.Message);
+            Console.WriteLine("DbUpdateException: " + ex.InnerException?.Message);
+        }
+        return null!;
     }
-
+  
     // Read
     public virtual TEntity Get(Expression<Func<TEntity, bool>> expression) 
     {

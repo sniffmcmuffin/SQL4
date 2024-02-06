@@ -30,7 +30,7 @@ public class DataCustomerService(DataCustomerRepo dataCustomerRepo)
     // Read
     public Customer GetCustomerById(int id)
     {
-        var customer = _dataCustomerRepo.Get(x => x.CustomerId == id);
+        var customer = _dataCustomerRepo.Get(x => x.Id == id);
         return customer;
     }
 
@@ -49,13 +49,13 @@ public class DataCustomerService(DataCustomerRepo dataCustomerRepo)
     // Update
     public Customer UpdateCustomer(Customer customer)
     {
-        var updatedCustomer = _dataCustomerRepo.Update(x => x.CustomerId == customer.CustomerId, customer);
+        var updatedCustomer = _dataCustomerRepo.Update(x => x.Id == customer.Id, customer);
         return updatedCustomer;
     }
 
     // Delete
     public void DeleteCustomer(int id)
     {
-        _dataCustomerRepo.Delete(x => x.CustomerId == id);
+        _dataCustomerRepo.Delete(x => x.Id == id);
     }
 }

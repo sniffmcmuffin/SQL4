@@ -9,8 +9,7 @@ namespace Infrastructure.Entities;
 public partial class Customer
 {
     [Key]
-    [Column("CustomerID")]
-    public int CustomerId { get; set; }
+    public int Id { get; set; }
 
     [StringLength(50)]
     [Unicode(false)]

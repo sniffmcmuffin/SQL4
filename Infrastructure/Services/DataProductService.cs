@@ -38,7 +38,7 @@ namespace Infrastructure.Services
         // Read
         public Product GetProductById(int id)
         {
-            var productEntity = _productRepository.Get(x => x.ProductId == id);
+            var productEntity = _productRepository.Get(x => x.Id == id);
             return productEntity;
         }
 
@@ -51,14 +51,14 @@ namespace Infrastructure.Services
         // Update
         public Product UpdateProduct(Product productEntity)
         {
-            var updatedProductEntity = _productRepository.Update(x => x.ProductId == productEntity.ProductId, productEntity);
+            var updatedProductEntity = _productRepository.Update(x => x.Id == productEntity.Id, productEntity);
             return updatedProductEntity;
         }
 
         // Delete
         public void DeleteProduct(int id)
         {
-            _productRepository.Delete(x => x.ProductId == id);
+            _productRepository.Delete(x => x.Id == id);
         }
     }
 }

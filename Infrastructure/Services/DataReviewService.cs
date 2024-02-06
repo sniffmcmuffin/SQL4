@@ -28,8 +28,8 @@ namespace Infrastructure.Services
             {
                 Rating = rating,
                 Comments = comments,
-                CustomerId = customerEntity?.CustomerId,
-                ProductId = productEntity?.ProductId
+                CustomerId = customerEntity?.Id,
+                ProductId = productEntity?.Id
             };
 
             reviewEntity = _reviewRepository.Create(reviewEntity);

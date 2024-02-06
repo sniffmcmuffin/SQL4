@@ -9,8 +9,7 @@ namespace Infrastructure.Entities;
 public partial class Product
 {
     [Key]
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int Id { get; set; }
 
     [StringLength(255)]
     [Unicode(false)]

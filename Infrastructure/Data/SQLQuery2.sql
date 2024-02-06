@@ -1,4 +1,11 @@
-﻿
+﻿-- Drop tables if they exist
+DROP TABLE IF EXISTS Reviews;
+DROP TABLE IF EXISTS ProductPrices;
+DROP TABLE IF EXISTS Customers;
+DROP TABLE IF EXISTS Products;
+DROP TABLE IF EXISTS Manufacturers;
+DROP TABLE IF EXISTS Categories;
+
 -- Categories Table
 CREATE TABLE Categories (
     CategoryID INT PRIMARY KEY,
@@ -13,7 +20,7 @@ CREATE TABLE Manufacturers (
 
 -- Products Table
 CREATE TABLE Products (
-    ProductID INT PRIMARY KEY,
+    Id INT IDENTITY(1,1) PRIMARY KEY,
     ProductName VARCHAR(255),
     Description TEXT,
     CategoryID INT,
@@ -24,7 +31,7 @@ CREATE TABLE Products (
 
 -- Customers Table
 CREATE TABLE Customers (
-    CustomerID INT PRIMARY KEY,
+    Id INT IDENTITY(1,1) PRIMARY KEY,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     Email VARCHAR(100),
@@ -35,7 +42,7 @@ CREATE TABLE Customers (
 CREATE TABLE ProductPrices (
     ProductID INT PRIMARY KEY,
     Price MONEY,
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE
+    FOREIGN KEY (ProductID) REFERENCES Products(Id) ON DELETE CASCADE
 );
 
 -- Reviews Table
@@ -45,6 +52,6 @@ CREATE TABLE Reviews (
     CustomerID INT,
     Rating INT,
     Comments TEXT,
-    FOREIGN KEY (ProductID) REFERENCES Products(ProductID) ON DELETE CASCADE,
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID) ON DELETE CASCADE
+    FOREIGN KEY (ProductID) REFERENCES Products(Id) ON DELETE CASCADE,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(Id) ON DELETE CASCADE
 );

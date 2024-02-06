@@ -196,7 +196,7 @@ public class ConsoleUI
 
     // DATABASE FIRST
 
-    // Create Customer
+    // Customer
     public void DbCreateCustomerUi()
     {
         Console.Clear();
@@ -226,4 +226,62 @@ public class ConsoleUI
         }
     }
 
+    public void DbGetCustomersUi()
+    {
+        var customers = _dataCustomerService.GetCustomers();
+
+        foreach (var customer in customers)
+        {
+            Console.WriteLine($" {customer.FirstName} {customer.LastName} ({customer.Email} )");
+        }
+
+        Console.ReadKey();
+        Console.Clear();
+    }
+
+    public void DbUpdateCustomerUi() // Strange but Customer Id 1 in database must be entered as 2. 
+    {                                // Must check if it is the same in teachers version.
+        Console.Clear();
+        Console.WriteLine("Enter customer id: ");
+        var id = int.Parse(Console.ReadLine()!);
+
+        var customer = _customerService.GetCustomerById(id);
+        if (customer != null)
+        {
+            Console.WriteLine($" {customer.FirstName} - {customer.LastName} ({customer.Email} )");
+            Console.WriteLine();
+
+            Console.Write("New Customer Email: ");
+            customer.Email = Console.ReadLine()!;
+
+            var newCustomer = _customerService.UpdateCustomer(customer);
+            Console.WriteLine($" {customer.FirstName} - {customer.LastName} ({customer.Email} )");
+        }
+        else
+        {
+            Console.WriteLine("No customer found.");
+        }
+
+        Console.ReadKey();
+    }
+
+    public void DbDeleteCustomerUi() // Same here. But it actually dont remove from the database
+    {                                // But it wont let me use the id to try again.
+        Console.Clear();
+        Console.WriteLine("Enter customer id: ");
+        var id = int.Parse(Console.ReadLine()!);
+
+        var customer = _customerService.GetCustomerById(id);
+        if (customer != null)
+        {
+            _customerService.DeleteCustomer(customer.Id);
+            Console.WriteLine("Customer deleted.");
+        }
+        else
+        {
+            Console.WriteLine("No customer found.");
+        }
+
+        Console.ReadKey();
+    }
 }

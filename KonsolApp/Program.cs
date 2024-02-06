@@ -54,17 +54,17 @@ var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
 }).Build();
 
 var consoleUI = builder.Services.GetRequiredService<ConsoleUI>();
-// consoleUI.CreateProductUi();     V
-// consoleUI.GetProductsUi();       V
-// consoleUI.UpdateProductUi();     V
-// consoleUI.DeleteProductUi();     V
+// consoleUI.CreateProductUi();     
+// consoleUI.GetProductsUi();       
+// consoleUI.UpdateProductUi();     
+// consoleUI.DeleteProductUi();     
 
-// consoleUI.CreateCustomerUi();    V
-// consoleUI.GetCustomersUi();      V
-// consoleUI.UpdateCustomerUi();    V
-// consoleUI.DeleteCustomerUi();    V
+// consoleUI.CreateCustomerUi();    
+// consoleUI.GetCustomersUi();      
+// consoleUI.UpdateCustomerUi();    
+// consoleUI.DeleteCustomerUi();    
 
-// consoleUI.DbCreateCustomerUi();  V
-consoleUI.DbGetCustomersUi();
+// consoleUI.DbCreateCustomerUi();  
+//  consoleUI.DbGetCustomersUi();    
 // consoleUI.DbUpdateCustomerUi();
-// consoleUI.DbDeleteCustomerUi();
+ consoleUI.DbDeleteCustomerUi();
