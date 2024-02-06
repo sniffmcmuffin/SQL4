@@ -245,7 +245,7 @@ public class ConsoleUI
         Console.WriteLine("Enter customer id: ");
         var id = int.Parse(Console.ReadLine()!);
 
-        var customer = _customerService.GetCustomerById(id);
+        var customer = _dataCustomerService.GetCustomerById(id);
         if (customer != null)
         {
             Console.WriteLine($" {customer.FirstName} - {customer.LastName} ({customer.Email} )");
@@ -254,7 +254,7 @@ public class ConsoleUI
             Console.Write("New Customer Email: ");
             customer.Email = Console.ReadLine()!;
 
-            var newCustomer = _customerService.UpdateCustomer(customer);
+            var newCustomer = _dataCustomerService.UpdateCustomer(customer);
             Console.WriteLine($" {customer.FirstName} - {customer.LastName} ({customer.Email} )");
         }
         else
@@ -271,10 +271,10 @@ public class ConsoleUI
         Console.WriteLine("Enter customer id: ");
         var id = int.Parse(Console.ReadLine()!);
 
-        var customer = _customerService.GetCustomerById(id);
+        var customer = _dataCustomerService.GetCustomerById(id);
         if (customer != null)
         {
-            _customerService.DeleteCustomer(customer.Id);
+            _dataCustomerService.DeleteCustomer(customer.Id);
             Console.WriteLine("Customer deleted.");
         }
         else
