@@ -67,4 +67,11 @@ var consoleUI = builder.Services.GetRequiredService<ConsoleUI>();
 // consoleUI.DbCreateCustomerUi();  
 //  consoleUI.DbGetCustomersUi();    
 // consoleUI.DbUpdateCustomerUi();
-consoleUI.DbDeleteCustomerUi();
+// consoleUI.DbDeleteCustomerUi();
+
+// consoleUI.DbCreateProductUi();     
+// consoleUI.DbGetProductsUi();       
+// consoleUI.DbUpdateProductUi();     
+// consoleUI.DbDeleteProductUi();
+
+consoleUI.DbCreateReviewUi();

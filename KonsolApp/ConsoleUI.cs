@@ -9,13 +9,15 @@ public class ConsoleUI
     private readonly CustomerService _customerService;
     private readonly DataProductService _dataProductService;
     private readonly DataCustomerService _dataCustomerService;
+    private readonly DataReviewService _dataReviewService;
 
-    public ConsoleUI(ProductService productService, CustomerService customerService, DataProductService dataProductService, DataCustomerService dataCustomerService)
+    public ConsoleUI(ProductService productService, CustomerService customerService, DataProductService dataProductService, DataCustomerService dataCustomerService, DataReviewService dataReviewService)
     {
         _productService = productService;
         _customerService = customerService;
         _dataProductService = dataProductService;
         _dataCustomerService = dataCustomerService;
+        _dataReviewService = dataReviewService;
     }
 
     // Products
@@ -239,8 +241,8 @@ public class ConsoleUI
         Console.Clear();
     }
 
-    public void DbUpdateCustomerUi() // Strange but Customer Id 1 in database must be entered as 2. 
-    {                                // Must check if it is the same in teachers version.
+    public void DbUpdateCustomerUi()  
+    {                                
         Console.Clear();
         Console.WriteLine("Enter customer id: ");
         var id = int.Parse(Console.ReadLine()!);
@@ -265,8 +267,8 @@ public class ConsoleUI
         Console.ReadKey();
     }
 
-    public void DbDeleteCustomerUi() // Same here. But it actually dont remove from the database
-    {                                // But it wont let me use the id to try again.
+    public void DbDeleteCustomerUi() 
+    {                                
         Console.Clear();
         Console.WriteLine("Enter customer id: ");
         var id = int.Parse(Console.ReadLine()!);
@@ -284,4 +286,81 @@ public class ConsoleUI
 
         Console.ReadKey();
     }
+
+    // Product
+    public void DbCreateProductUi()
+    {
+        Console.Clear();
+        Console.WriteLine("---- CREATE PRODUCT ----");
+
+        Console.Write("Product Name: ");
+        var productName = Console.ReadLine();
+
+        Console.Write("Description: ");
+        var description = Console.ReadLine();
+
+        Console.WriteLine("Manufacturer: ");
+        var manufacturerName = Console.ReadLine();
+
+        Console.WriteLine("Category: ");
+        var categoryName = Console.ReadLine();
+
+        // Create product using the CreateProduct method
+        var result = _dataProductService.CreateProduct(productName, description, manufacturerName, categoryName);
+
+        if (result != null)
+        {
+            Console.Clear();
+            Console.WriteLine("Product was created.");
+            Console.ReadKey();
+        }
+    }
+
+    public void DbCreateReviewUi()
+    {
+        Console.Clear();
+        Console.WriteLine("---- CREATE REVIEW ----");
+
+        Console.Write("First Name: ");
+        var firstName = Console.ReadLine();
+
+        Console.Write("Last Name: ");
+        var lastName = Console.ReadLine();
+
+        Console.Write("Email: ");
+        var email = Console.ReadLine();
+
+        Console.Write("Phone: ");
+        var phone = Console.ReadLine();
+
+        Console.Write("Product ID: ");
+        if (!int.TryParse(Console.ReadLine(), out int productId))
+        {
+            Console.WriteLine("Invalid Product ID. Please enter a valid integer.");
+            Console.ReadKey();
+            return;
+        }
+
+        Console.Write("Rating (1-5): ");
+        if (!int.TryParse(Console.ReadLine(), out int rating) || rating < 1 || rating > 5)
+        {
+            Console.WriteLine("Invalid Rating. Please enter an integer between 1 and 5.");
+            Console.ReadKey();
+            return;
+        }
+
+        Console.Write("Comments: ");
+        var comments = Console.ReadLine();
+
+        // Create review using the CreateReview method
+        var result = _dataReviewService.CreateReview(firstName, lastName, email, phone, productId, rating, comments);
+
+        if (result != null)
+        {
+            Console.Clear();
+            Console.WriteLine("Review was created.");
+            Console.ReadKey();
+        }
+    }
+
 }

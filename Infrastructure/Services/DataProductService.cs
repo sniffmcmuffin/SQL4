@@ -19,21 +19,35 @@ namespace Infrastructure.Services
         // Create
         public Product CreateProduct(string productName, string description, string manufacturerName, string categoryName)
         {
+            // Check if manufacturer exists, create if not
             var manufacturerEntity = _manufacturerService.GetManufacturerByName(manufacturerName);
-            var categoryEntity = _categoryService.GetCategoryByName(categoryName);
+            if (manufacturerEntity == null)
+            {
+                manufacturerEntity = _manufacturerService.CreateManufacturer(manufacturerName);
+            }
 
+            // Check if category exists, create if not
+            var categoryEntity = _categoryService.GetCategoryByName(categoryName);
+            if (categoryEntity == null)
+            {
+                categoryEntity = _categoryService.CreateCategory(categoryName);
+            }
+
+            // Create product entity
             var productEntity = new Product
             {
                 ProductName = productName,
                 Description = description,
-                ManufacturerId = manufacturerEntity?.ManufacturerId,
-                CategoryId = categoryEntity?.CategoryId
+                ManufacturerId = manufacturerEntity.ManufacturerId,
+                CategoryId = categoryEntity.CategoryId
             };
 
+            // Create product in repository
             productEntity = _productRepository.Create(productEntity);
 
             return productEntity;
         }
+
 
         // Read
         public Product GetProductById(int id)

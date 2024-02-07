@@ -19,23 +19,29 @@ namespace Infrastructure.Services
         }
 
         // Create
-        public Review CreateReview(string firstName, string lastName, string email, string phone, string productName, string description, string manufacturerName, string categoryName, int rating, string comments)
+        public Review CreateReview(string firstName, string lastName, string email, string phone, int productId, int rating, string comments)
         {
             var customerEntity = _customerService.CreateCustomer(firstName, lastName, email, phone);
-            var productEntity = _productService.CreateProduct(productName, description, manufacturerName, categoryName);
+
+            if (customerEntity == null)
+            {
+                // Handle case where creating customer fails
+                return null;
+            }
 
             var reviewEntity = new Review
             {
                 Rating = rating,
                 Comments = comments,
-                CustomerId = customerEntity?.Id,
-                ProductId = productEntity?.Id
+                CustomerId = customerEntity.Id,
+                ProductId = productId
             };
 
             reviewEntity = _reviewRepository.Create(reviewEntity);
 
             return reviewEntity;
         }
+
 
         // Read
         public Review GetReviewById(int id)
