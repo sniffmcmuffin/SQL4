@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Contexts;
+using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories;
@@ -8,6 +9,24 @@ public class BaseRepository<TEntity>(DataContext context) where TEntity : class
     private readonly DataContext _context = context;
 
     // Create
+    public async Task<TEntity> CreateAsync(TEntity entity)
+    {
+        try
+        {
+            _context.Set<TEntity>().Add(entity);
+            _context.SaveChanges(); // Get red sqiggly line with await. 
+
+            return entity;
+        }
+        catch (Exception ex)
+        {
+           Debug.WriteLine(ex.Message);
+
+            return null!;
+        }
+
+    }
+
     public virtual TEntity Create(TEntity entity)
     {
         _context.Set<TEntity>().Add(entity);

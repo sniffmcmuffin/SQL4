@@ -28,32 +28,69 @@ public class DataRepo<TEntity>(ApplicationDataContext context) where TEntity : c
     // Read
     public virtual TEntity Get(Expression<Func<TEntity, bool>> expression) 
     {
-        var entity = _context.Set<TEntity>().FirstOrDefault(expression);
-        return entity!;
+        try
+        {
+            var entity = _context.Set<TEntity>().FirstOrDefault(expression);
+            return entity!;
+        } 
+        catch (Exception ex)
+        {
+            Debug.WriteLine("ERROR :: " + ex.Message);
+            Console.WriteLine("DbUpdateException: " + ex.InnerException?.Message);
+        }
+        return null!;
     }
 
     public virtual IEnumerable<TEntity> GetAll()
     {
-        return _context.Set<TEntity>().ToList();
+        try
+        {
+            return _context.Set<TEntity>().ToList();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("ERROR :: " + ex.Message);
+            Console.WriteLine("DbUpdateException: " + ex.InnerException?.Message);
+        }
+        return Enumerable.Empty<TEntity>();        
     }
 
     // Update
     public virtual TEntity Update(Expression<Func<TEntity, bool>> expression, TEntity entity)
     {
-        var entityToUpdate = _context.Set<TEntity>().FirstOrDefault(expression);
-        _context.Entry(entityToUpdate!).CurrentValues.SetValues(entity); 
-        _context.SaveChanges();
+        try
+        {
+            var entityToUpdate = _context.Set<TEntity>().FirstOrDefault(expression);
+            _context.Entry(entityToUpdate!).CurrentValues.SetValues(entity);
+            _context.SaveChanges();
 
-        return entityToUpdate!;
+            return entityToUpdate!;
+        }
+
+        catch (Exception ex)
+        {
+            Debug.WriteLine("ERROR :: " + ex.Message);
+            Console.WriteLine("DbUpdateException: " + ex.InnerException?.Message);
+        }
+        return null!;
     }
 
     // Delete
     public virtual void Delete(Expression<Func<TEntity, bool>> expression)
     {
-        var entity = _context.Set<TEntity>().FirstOrDefault(expression);
-        _context.Remove(entity!);
-        _context.SaveChanges();
-        //  return true;
+        try
+        {
+            var entity = _context.Set<TEntity>().FirstOrDefault(expression);
+            _context.Remove(entity!);
+            _context.SaveChanges();
+            //  return true;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("ERROR :: " + ex.Message);
+            Console.WriteLine("DbUpdateException: " + ex.InnerException?.Message);
+        }
+
     }
 
     // Exists

@@ -294,18 +294,17 @@ public class ConsoleUI
         Console.WriteLine("---- CREATE PRODUCT ----");
 
         Console.Write("Product Name: ");
-        var productName = Console.ReadLine();
+        var productName = Console.ReadLine()!;
 
         Console.Write("Description: ");
-        var description = Console.ReadLine();
+        var description = Console.ReadLine()!;
 
         Console.WriteLine("Manufacturer: ");
-        var manufacturerName = Console.ReadLine();
+        var manufacturerName = Console.ReadLine()!;
 
         Console.WriteLine("Category: ");
-        var categoryName = Console.ReadLine();
-
-        // Create product using the CreateProduct method
+        var categoryName = Console.ReadLine()!;
+           
         var result = _dataProductService.CreateProduct(productName, description, manufacturerName, categoryName);
 
         if (result != null)
@@ -322,16 +321,16 @@ public class ConsoleUI
         Console.WriteLine("---- CREATE REVIEW ----");
 
         Console.Write("First Name: ");
-        var firstName = Console.ReadLine();
+        var firstName = Console.ReadLine()!;
 
         Console.Write("Last Name: ");
-        var lastName = Console.ReadLine();
+        var lastName = Console.ReadLine()!;
 
         Console.Write("Email: ");
-        var email = Console.ReadLine();
+        var email = Console.ReadLine()!;
 
         Console.Write("Phone: ");
-        var phone = Console.ReadLine();
+        var phone = Console.ReadLine()!;
 
         Console.Write("Product ID: ");
         if (!int.TryParse(Console.ReadLine(), out int productId))
@@ -350,9 +349,8 @@ public class ConsoleUI
         }
 
         Console.Write("Comments: ");
-        var comments = Console.ReadLine();
-
-        // Create review using the CreateReview method
+        var comments = Console.ReadLine()!;
+        
         var result = _dataReviewService.CreateReview(firstName, lastName, email, phone, productId, rating, comments);
 
         if (result != null)

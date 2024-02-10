@@ -49,7 +49,7 @@ var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
     services.AddScoped<DataProductPriceService>();
     services.AddScoped<DataCustomerService>();
     services.AddScoped<DataManufacturerService>();
-
+       
     services.AddSingleton<ConsoleUI>();
 }).Build();
 

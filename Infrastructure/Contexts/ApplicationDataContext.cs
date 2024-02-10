@@ -32,58 +32,56 @@ public partial class ApplicationDataContext : DbContext
     {
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.CategoryId).HasName("PK__Categori__19093A2B8686E8FE");
+            entity.HasKey(e => e.CategoryId).HasName("PK__Categori__19093A2B1DBE1636");
 
             entity.Property(e => e.CategoryId).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC07003497A9");
+            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC072E98692A");
         });
 
         modelBuilder.Entity<Manufacturer>(entity =>
         {
-            entity.HasKey(e => e.ManufacturerId).HasName("PK__Manufact__357E5CA1D4B519CD");
+            entity.HasKey(e => e.ManufacturerId).HasName("PK__Manufact__357E5CA104AD482A");
 
             entity.Property(e => e.ManufacturerId).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Products__3214EC076C028A75");
+            entity.HasKey(e => e.Id).HasName("PK__Products__3214EC07C3C176CC");
 
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Products__Catego__4AB81AF0");
+                .HasConstraintName("FK__Products__Catego__60A75C0F");
 
             entity.HasOne(d => d.Manufacturer).WithMany(p => p.Products)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Products__Manufa__4BAC3F29");
+                .HasConstraintName("FK__Products__Manufa__619B8048");
         });
 
         modelBuilder.Entity<ProductPrice>(entity =>
         {
-            entity.HasKey(e => e.ProductId).HasName("PK__ProductP__B40CC6ED9462DE7A");
+            entity.HasKey(e => e.ProductId).HasName("PK__ProductP__B40CC6EDCE00BFD7");
 
             entity.Property(e => e.ProductId).ValueGeneratedNever();
 
-            entity.HasOne(d => d.Product).WithOne(p => p.ProductPrice).HasConstraintName("FK__ProductPr__Produ__5070F446");
+            entity.HasOne(d => d.Product).WithOne(p => p.ProductPrice).HasConstraintName("FK__ProductPr__Produ__66603565");
         });
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.ReviewId).HasName("PK__Reviews__74BC79AE3DDF041D");
-
-            entity.Property(e => e.ReviewId).ValueGeneratedNever();
+            entity.HasKey(e => e.ReviewId).HasName("PK__Reviews__74BC79AE5C4E1F1D");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Reviews)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Reviews__Custome__5441852A");
+                .HasConstraintName("FK__Reviews__Custome__6A30C649");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Reviews)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("FK__Reviews__Product__534D60F1");
+                .HasConstraintName("FK__Reviews__Product__693CA210");
         });
 
         OnModelCreatingPartial(modelBuilder);
