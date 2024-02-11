@@ -2,6 +2,7 @@
 using Infrastructure.Repositories;
 using Infrastructure.Services;
 using KonsolApp;
+using KonsolApp.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -49,11 +50,14 @@ var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
     services.AddScoped<DataProductPriceService>();
     services.AddScoped<DataCustomerService>();
     services.AddScoped<DataManufacturerService>();
-       
+
     services.AddSingleton<ConsoleUI>();
+    services.AddSingleton<MenuService>();
 }).Build();
 
-var consoleUI = builder.Services.GetRequiredService<ConsoleUI>();
+var menuService = builder.Services.GetRequiredService<MenuService>();
+menuService.ShowMainMenu();
+
 // consoleUI.CreateProductUi();     
 // consoleUI.GetProductsUi();       
 // consoleUI.UpdateProductUi();     
@@ -74,4 +78,4 @@ var consoleUI = builder.Services.GetRequiredService<ConsoleUI>();
 // consoleUI.DbUpdateProductUi();     
 // consoleUI.DbDeleteProductUi();
 
-consoleUI.DbCreateReviewUi();
+// consoleUI.DbCreateReviewUi();

@@ -16,6 +16,19 @@ public class RoleService(RoleRepository roleRepository)
         return roleEntity;
     }
 
+    public async Task<RoleEntity> CreateRoleAsync(string roleName)
+    {
+        var roleEntity = await _roleRepository.GetAsync(x => x.RoleName == roleName);
+
+        if (roleEntity == null)
+        {
+            roleEntity = await _roleRepository.CreateAsync(new RoleEntity { RoleName = roleName });
+        }
+
+        return roleEntity;
+    }
+
+
     // Read
     public RoleEntity GetRoleByRoleName(string roleName) // By name
     {

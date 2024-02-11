@@ -14,11 +14,11 @@ public class CustomerService(CustomerRepository customerRepository, AddressServi
     private readonly RoleService _roleService = roleService;
 
     // Create
-    public CustomerEntity CreateCustomer(string firstName, string lastName, string email, string roleName, string streetName, string postalCode, string city)
+    public async Task<CustomerEntity> CreateCustomerAsync(string firstName, string lastName, string email, string roleName, string streetName, string postalCode, string city)
     {
         // Beroenden först och här så fattar jag vad som jag gjort fel med min egna kod i egna försök.
-        var roleEntity = _roleService.CreateRole(roleName);
-        var addressEntity = _addressService.CreateAddress(streetName, postalCode, city);
+        var roleEntity = await _roleService.CreateRoleAsync(roleName); // Add await and async here when those are added.
+        var addressEntity = await _addressService.CreateAddressAsync(streetName, postalCode, city);
 
         var customerEntity = new CustomerEntity
         {
@@ -29,10 +29,10 @@ public class CustomerService(CustomerRepository customerRepository, AddressServi
             AddressId = addressEntity.Id,
         };
 
-        customerEntity = _customerRepository.Create(customerEntity);
-
+        customerEntity = await _customerRepository.CreateAsync(customerEntity);
         return customerEntity; // Funkar detta så blir jag överlycklig.
     }
+
 
     // Read
     public CustomerEntity GetCustomerById(int id)

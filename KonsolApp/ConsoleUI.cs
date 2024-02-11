@@ -128,7 +128,7 @@ public class ConsoleUI
         Console.Write("Role Name: ");
         var roleName = Console.ReadLine()!;
 
-        var result = _customerService.CreateCustomer(firstName, lastName, email, roleName, streetName, postalCode, city);
+        var result = _customerService.CreateCustomerAsync(firstName, lastName, email, roleName, streetName, postalCode, city);
         
         Debug.WriteLine(result);
 

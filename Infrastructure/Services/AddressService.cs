@@ -23,6 +23,18 @@ public class AddressService(AddressRepository addressRepository)
         return addressEntity;
     }
 
+    public async Task<AddressEntity> CreateAddressAsync(string streetName, string postalCode, string city)
+    {
+        var addressEntity = await _addressRepository.GetAsync(x => x.StreetName == streetName && x.PostalCode == postalCode && x.City == city);
+
+        if (addressEntity == null)
+        {
+            addressEntity = await _addressRepository.CreateAsync(new AddressEntity { StreetName = streetName, PostalCode = postalCode, City = city });
+        }
+
+        return addressEntity;
+    }
+
     // Read
     public AddressEntity GetAddressbyAddressName(string streetName, string postalCode, string city) 
     {
