@@ -1,5 +1,9 @@
 # SQL4
 # SCHOOL ASSIGNMENT, 4th ATTEMPT
+#
+# STATUS:
+# Everything for G should be there. Not 199% done with crud functions in the ui for database first. Nor all tests and no summary comments.
+#
 # TODO:
 # Make sure that when creating a new user the email address is unique.
 # Make it delete by email rather then id.
