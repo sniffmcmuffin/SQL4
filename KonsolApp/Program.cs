@@ -42,7 +42,6 @@ var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
     services.AddScoped<DataCustomerRepo>();
     services.AddScoped<DataProductRepo>();
     services.AddScoped<DataReviewRepo>();
-
     // Database First Services
     services.AddScoped<DataCategoryService>();
     services.AddScoped<DataProductService>();
@@ -58,6 +57,7 @@ var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
 var menuService = builder.Services.GetRequiredService<MenuService>();
 menuService.ShowMainMenu();
 
+// Code First - all work.
 // consoleUI.CreateProductUi();     
 // consoleUI.GetProductsUi();       
 // consoleUI.UpdateProductUi();     
@@ -68,14 +68,15 @@ menuService.ShowMainMenu();
 // consoleUI.UpdateCustomerUi();    
 // consoleUI.DeleteCustomerUi();    
 
+// Database first - All implemented should work.
 // consoleUI.DbCreateCustomerUi();  
 //  consoleUI.DbGetCustomersUi();    
 // consoleUI.DbUpdateCustomerUi();
 // consoleUI.DbDeleteCustomerUi();
 
 // consoleUI.DbCreateProductUi();     
-// consoleUI.DbGetProductsUi();       
-// consoleUI.DbUpdateProductUi();     
-// consoleUI.DbDeleteProductUi();
+// consoleUI.DbGetProductsUi();    Not implemented yet   
+// consoleUI.DbUpdateProductUi();  Not implemented yet 
+// consoleUI.DbDeleteProductUi();  Not implemented yet 
 
 // consoleUI.DbCreateReviewUi();

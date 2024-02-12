@@ -20,6 +20,8 @@ public class ConsoleUI
         _dataReviewService = dataReviewService;
     }
 
+    // Code First
+
     // Products
     public void CreateProductUi()
     {

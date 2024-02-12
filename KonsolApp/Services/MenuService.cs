@@ -1,11 +1,4 @@
-﻿using Infrastructure.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KonsolApp.Services;
+﻿namespace KonsolApp.Services;
 
 public class MenuService // This is awful, but the best I could do in the 11th hour.
 {
@@ -55,10 +48,10 @@ public class MenuService // This is awful, but the best I could do in the 11th h
         Console.WriteLine("3. Update CodeFirst Product");
         Console.WriteLine("4. Delete CodeFirst Product");
         Console.WriteLine("5. Create DataFirst Product");
-        Console.WriteLine("6. Get DataFirst Products");
-        Console.WriteLine("7. Update DataFirst Product");
-        Console.WriteLine("8. Delete DataFirst Product");
-        Console.WriteLine("9. Back to Main Menu");
+        Console.WriteLine("6. Get DataFirst Products - Not implemented yet ");
+        Console.WriteLine("7. Update DataFirst Product - Not implemented yet ");
+        Console.WriteLine("8. Delete DataFirst Product - Not implemented yet ");
+        Console.WriteLine("9. Back to Main Menu - Not implemented yet ");
 
         Console.Write("Enter your choice: ");
         var choice = Console.ReadLine();
@@ -151,6 +144,24 @@ public class MenuService // This is awful, but the best I could do in the 11th h
 
     private void ShowReviewMenu()
     {
-        // Implement similar logic for managing reviews
+        Console.WriteLine("Manage Customers Menu");
+        Console.WriteLine("1. Create Database First Review");
+        Console.WriteLine("2. Back to Main Menu");
+
+        Console.Write("Enter your choice: ");
+        var choice = Console.ReadLine();
+
+        switch (choice)
+        {
+            case "1":
+                _consoleUI.DbCreateReviewUi();
+                break;
+            case "2":
+                ShowMainMenu();
+                break;
+            default:
+                Console.WriteLine("Invalid choice!");
+                break;
+        }
     }
 }
